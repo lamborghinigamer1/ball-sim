@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvlx1lnghpcvn"]
+
+[ext_resource type="Script" path="res://Scripts/Ball.cs" id="1_0lo1j"]
+[ext_resource type="Texture2D" uid="uid://ql1hmda5nd5o" path="res://Sprites/Ball.png" id="1_sycrf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w41p"]
+
+[node name="Ball" type="RigidBody2D"]
+script = ExtResource("1_0lo1j")
+BounceForcePerPixel = 10.0
+
+[node name="BallSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_sycrf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7w41p")
+
+[node name="GroundCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="LeftCast" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="TopCast" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="RightCast" type="RayCast2D" parent="."]
+rotation = 4.71239
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="TopRightCast" type="RayCast2D" parent="."]
+rotation = 3.92699
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="BottomRightCast" type="RayCast2D" parent="."]
+rotation = -0.785398
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="BottomLeftCast" type="RayCast2D" parent="."]
+rotation = 0.785398
+target_position = Vector2(0, 11)
+collide_with_areas = true
+
+[node name="TopLeftCast" type="RayCast2D" parent="."]
+rotation = -3.92699
+target_position = Vector2(0, 11)
+collide_with_areas = true

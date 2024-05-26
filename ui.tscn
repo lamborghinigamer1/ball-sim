@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://vluap0173i5k"]
+
+[ext_resource type="Script" path="res://Scripts/FpsCounter.cs" id="1_ua7cl"]
+
+[sub_resource type="SystemFont" id="SystemFont_sctvp"]
+
+[node name="UI" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FpsCounter" type="Label" parent="Control"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = SubResource("SystemFont_sctvp")
+theme_override_font_sizes/font_size = 16
+text = "FPS: "
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ua7cl")

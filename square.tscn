@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://81koggugmnju"]
+
+[ext_resource type="Texture2D" uid="uid://c4ry5h8jkeo11" path="res://Sprites/Square.png" id="1_bifyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl5lg"]
+
+[node name="Square" type="StaticBody2D"]
+
+[node name="Square" type="Sprite2D" parent="."]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_bifyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_pl5lg")
