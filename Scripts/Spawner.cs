@@ -24,8 +24,8 @@ public partial class Spawner : Node2D
 			{
 				GD.Print("Spawned ball");
 				Ball ball = BallScene.Instantiate<Ball>();
-				ball.MaxSpeed = 5;
-				ball.BounceForcePerPixel = 0.1f;
+				ball.MaxSpeed = 10;
+				ball.BounceForcePerPixel = 5;
 				AddChild(ball);
 			}
 			_doneSpawning = true;

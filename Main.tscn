@@ -15,8 +15,7 @@ zoom = Vector2(2, 2)
 
 [node name="Ball" parent="." instance=ExtResource("1_rtuq4")]
 position = Vector2(-77, -13)
-BounceForcePerPixel = 0.1
-MaxSpeed = 5.0
+BounceForcePerPixel = 5.0
 
 [node name="Wall" parent="." instance=ExtResource("2_umwga")]
 modulate = Color(0.490196, 0.490196, 0.490196, 1)

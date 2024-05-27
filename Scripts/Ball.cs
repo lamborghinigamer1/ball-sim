@@ -33,7 +33,7 @@ public partial class Ball : RigidBody2D
 		BounceForcePerPixel *= 1000;
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		float currentRotation = RotationDegrees;
 		_groundCast.RotationDegrees = (0 - currentRotation) % 360;
