@@ -17,8 +17,13 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/handheld/orientation=4
 window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="ball-sim"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

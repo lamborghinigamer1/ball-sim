@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c75xxbeyt56dd"]
+[gd_scene load_steps=5 format=3 uid="uid://c75xxbeyt56dd"]
 
+[ext_resource type="Script" path="res://Scripts/Spawner.cs" id="1_iqdfc"]
 [ext_resource type="PackedScene" uid="uid://dvlx1lnghpcvn" path="res://ball.tscn" id="1_rtuq4"]
 [ext_resource type="PackedScene" uid="uid://vluap0173i5k" path="res://ui.tscn" id="1_tyyrc"]
 [ext_resource type="PackedScene" uid="uid://81koggugmnju" path="res://square.tscn" id="2_umwga"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_iqdfc")
+Balls = 10
+BallScene = ExtResource("1_rtuq4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
 [node name="Ball" parent="." instance=ExtResource("1_rtuq4")]
+position = Vector2(-77, -13)
+BounceForcePerPixel = 0.1
+MaxSpeed = 5.0
 
 [node name="Wall" parent="." instance=ExtResource("2_umwga")]
 modulate = Color(0.490196, 0.490196, 0.490196, 1)
@@ -38,3 +45,5 @@ position = Vector2(-287, -163)
 
 [node name="Square" parent="." instance=ExtResource("2_umwga")]
 position = Vector2(-11, 92)
+rotation = 0.598648
+scale = Vector2(0.755, 1)

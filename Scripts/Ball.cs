@@ -5,22 +5,18 @@ public partial class Ball : RigidBody2D
 {
 	[Export]
 	public float BounceForcePerPixel = 5;
+
+	[Export]
+	public float MaxSpeed = 10;
+
 	private RayCast2D _groundCast;
-
 	private RayCast2D _topCast;
-
 	private RayCast2D _leftCast;
-
 	private RayCast2D _rightCast;
-
 	private RayCast2D _topRightCast;
-
 	private RayCast2D _bottomRightCast;
-
 	private RayCast2D _bottomLeftCast;
-
 	private RayCast2D _topLeftCast;
-
 
 	public override void _Ready()
 	{
@@ -32,7 +28,11 @@ public partial class Ball : RigidBody2D
 		_topLeftCast = GetNode<RayCast2D>("TopLeftCast");
 		_topRightCast = GetNode<RayCast2D>("TopRightCast");
 		_bottomRightCast = GetNode<RayCast2D>("BottomRightCast");
+
+		MaxSpeed *= 1000;
+		BounceForcePerPixel *= 1000;
 	}
+
 	public override void _Process(double delta)
 	{
 		float currentRotation = RotationDegrees;
@@ -45,54 +45,65 @@ public partial class Ball : RigidBody2D
 		_topRightCast.RotationDegrees = 225 - currentRotation;
 		_topLeftCast.RotationDegrees = -225 - currentRotation;
 
-
-
 		if (_groundCast.IsColliding())
 		{
-			Vector2 force = new(0, -BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
+			Vector2 force = new(0, -BounceForcePerPixel);
+			ApplyForce(force);
+		}
+		else if (_topCast.IsColliding())
+		{
+			Vector2 force = new(0, BounceForcePerPixel);
+			ApplyForce(force);
+		}
+		else if (_leftCast.IsColliding())
+		{
+			Vector2 force = new(BounceForcePerPixel, 0);
+			ApplyForce(force);
+		}
+		else if (_rightCast.IsColliding())
+		{
+			Vector2 force = new(-BounceForcePerPixel, 0);
+			ApplyForce(force);
+		}
+		else if (_bottomLeftCast.IsColliding())
+		{
+			Vector2 force = new(BounceForcePerPixel, -BounceForcePerPixel);
+			ApplyForce(force);
+		}
+		else if (_topLeftCast.IsColliding())
+		{
+			Vector2 force = new(BounceForcePerPixel, BounceForcePerPixel);
+			ApplyForce(force);
+		}
+		else if (_topRightCast.IsColliding())
+		{
+			Vector2 force = new(-BounceForcePerPixel, BounceForcePerPixel);
+			ApplyForce(force);
+		}
+		else if (_bottomRightCast.IsColliding())
+		{
+			Vector2 force = new(-BounceForcePerPixel, -BounceForcePerPixel);
+			ApplyForce(force);
 		}
 
-		if (_topCast.IsColliding())
-		{
-			Vector2 force = new(0, BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
-		}
+		LimitSpeed();
+	}
 
-		if (_leftCast.IsColliding())
-		{
-			Vector2 force = new(BounceForcePerPixel * 1000 * (float)delta, 0);
-			ApplyCentralImpulse(force);
-		}
+	private void ApplyForce(Vector2 force)
+	{
+		// Apply the force to the ball
+		ApplyCentralForce(force);
+	}
 
-		if (_rightCast.IsColliding())
-		{
-			Vector2 force = new(-BounceForcePerPixel * 1000 * (float)delta, 0);
-			ApplyCentralImpulse(force);
-		}
+	private void LimitSpeed()
+	{
+		Vector2 velocity = LinearVelocity;
+		float speed = velocity.Length();
 
-		if (_bottomLeftCast.IsColliding())
+		if (speed > MaxSpeed)
 		{
-			Vector2 force = new(BounceForcePerPixel * 1000 * (float)delta, -BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
-		}
-
-		if (_topLeftCast.IsColliding())
-		{
-			Vector2 force = new(BounceForcePerPixel * 1000 * (float)delta, BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
-		}
-
-		if (_topRightCast.IsColliding())
-		{
-			Vector2 force = new(-BounceForcePerPixel * 1000 * (float)delta, BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
-		}
-
-		if (_bottomRightCast.IsColliding())
-		{
-			Vector2 force = new(-BounceForcePerPixel * 1000 * (float)delta, -BounceForcePerPixel * 1000 * (float)delta);
-			ApplyCentralImpulse(force);
+			velocity = velocity.Normalized() * MaxSpeed;
+			LinearVelocity = velocity;
 		}
 	}
 }

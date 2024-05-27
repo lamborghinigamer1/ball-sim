@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/FpsCounter.cs" id="1_ua7cl"]
 
 [sub_resource type="SystemFont" id="SystemFont_sctvp"]
+subpixel_positioning = 0
 
 [node name="UI" type="Node2D"]
 
@@ -13,6 +14,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="FpsCounter" type="Label" parent="Control"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = SubResource("SystemFont_sctvp")
