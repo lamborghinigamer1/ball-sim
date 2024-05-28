@@ -7,9 +7,9 @@
 [node name="Square" type="StaticBody2D"]
 
 [node name="Square" type="Sprite2D" parent="."]
-scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_bifyn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_pl5lg")
