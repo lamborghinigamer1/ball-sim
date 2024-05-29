@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://c75xxbeyt56dd"]
 
-[ext_resource type="Script" path="res://Scripts/Spawner.cs" id="1_iqdfc"]
+[ext_resource type="Script" path="res://Scripts/Spawner.gd" id="1_h3xix"]
 [ext_resource type="PackedScene" uid="uid://dvlx1lnghpcvn" path="res://ball.tscn" id="1_rtuq4"]
 [ext_resource type="PackedScene" uid="uid://vluap0173i5k" path="res://ui.tscn" id="1_tyyrc"]
 [ext_resource type="PackedScene" uid="uid://81koggugmnju" path="res://square.tscn" id="2_umwga"]
-[ext_resource type="Script" path="res://Scripts/CameraController.cs" id="3_301ia"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="3_x8vri"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_iqdfc")
+script = ExtResource("1_h3xix")
 Balls = 10
 BallScene = ExtResource("1_rtuq4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-script = ExtResource("3_301ia")
+script = ExtResource("3_x8vri")
 
 [node name="Ball" parent="." instance=ExtResource("1_rtuq4")]
 position = Vector2(-77, -13)

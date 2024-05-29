@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vluap0173i5k"]
 
-[ext_resource type="Script" path="res://Scripts/FpsCounter.cs" id="1_ua7cl"]
+[ext_resource type="Script" path="res://Scripts/FpsCounter.gd" id="1_ysien"]
 
 [sub_resource type="SystemFont" id="SystemFont_sctvp"]
 subpixel_positioning = 0
@@ -22,4 +22,4 @@ theme_override_font_sizes/font_size = 50
 text = "FPS: "
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_ua7cl")
+script = ExtResource("1_ysien")

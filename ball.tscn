@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvlx1lnghpcvn"]
 
-[ext_resource type="Script" path="res://Scripts/Ball.cs" id="1_0lo1j"]
 [ext_resource type="Texture2D" uid="uid://ql1hmda5nd5o" path="res://Sprites/Ball.png" id="1_sycrf"]
+[ext_resource type="Script" path="res://Scripts/Ball.gd" id="1_v456h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7w41p"]
 
 [node name="Ball" type="RigidBody2D"]
-script = ExtResource("1_0lo1j")
+script = ExtResource("1_v456h")
 BounceForcePerPixel = 10.0
 
 [node name="BallSprite" type="Sprite2D" parent="."]
