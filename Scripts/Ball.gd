@@ -32,9 +32,9 @@ func _physics_process(_delta: float):
 	_rightCast.rotation_degrees = fmod((270 - currentRotation), 360)
 	_leftCast.rotation_degrees = fmod((90 - currentRotation), 360)
 	_bottomLeftCast.rotation_degrees = fmod((45 - currentRotation), 360)
-	_bottomRightCast.rotation_degrees = fmod(( - 45 - currentRotation), 360)
+	_bottomRightCast.rotation_degrees = fmod((315 - currentRotation), 360)
 	_topRightCast.rotation_degrees = fmod((225 - currentRotation), 360)
-	_topLeftCast.rotation_degrees = fmod(( - 225 - currentRotation), 360)
+	_topLeftCast.rotation_degrees = fmod((135 - currentRotation), 360)
 
 	if _groundCast.is_colliding():
 		var force = Vector2(0, -BounceForcePerPixel)
