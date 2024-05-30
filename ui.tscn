@@ -15,11 +15,10 @@ offset_bottom = 641.0
 
 [node name="FpsCounter" type="Label" parent="Control"]
 layout_mode = 0
-offset_right = 112.0
-offset_bottom = 69.0
+offset_right = 1144.0
+offset_bottom = 698.0
+scale = Vector2(0.1, 0.1)
 theme_override_fonts/font = SubResource("SystemFont_sctvp")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 512
 text = "FPS: "
-horizontal_alignment = 1
-vertical_alignment = 1
 script = ExtResource("1_ysien")
