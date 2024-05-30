@@ -55,3 +55,5 @@ collide_with_areas = true
 rotation = -3.92699
 target_position = Vector2(0, 11)
 collide_with_areas = true
+
+[node name="AD" type="AudioStreamPlayer2D" parent="."]

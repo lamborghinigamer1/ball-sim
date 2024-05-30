@@ -11,6 +11,7 @@ var _topRightCast: RayCast2D
 var _bottomRightCast: RayCast2D
 var _bottomLeftCast: RayCast2D
 var _topLeftCast: RayCast2D
+var _audioPlayer: AudioStreamPlayer2D
 
 func _ready():
 	_groundCast = $GroundCast
@@ -21,6 +22,7 @@ func _ready():
 	_topLeftCast = $TopLeftCast
 	_topRightCast = $TopRightCast
 	_bottomRightCast = $BottomRightCast
+	_audioPlayer = $AD
 
 	MaxSpeed *= 1000
 	BounceForcePerPixel *= 1000
@@ -65,6 +67,7 @@ func _physics_process(_delta: float):
 
 func custom_force(force: Vector2):
 	# Apply the force to the ball
+	_audioPlayer.play()
 	apply_central_force(force)
 
 func limit_speed():
