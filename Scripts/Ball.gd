@@ -19,6 +19,9 @@ func _ready() -> void:
 	self.physics_material_override = bounce_material
 
 func _physics_process(_delta: float) -> void:
+	limit_speed()
+
+func limit_speed():
 	if speed_limit:
 		# Limit the speed of the ball
 		var speed_in_thousand_pixels_a_second = max_speed * 1000
