@@ -1,79 +1,30 @@
 extends RigidBody2D
 
-@export var BounceForcePerPixel: float = 5.0
-@export var MaxSpeed: float = 10.0
+## The max speed of the ball (px/s * 1000)
+@export var max_speed: float = 10
+## If this is disabled then the Max Speed doesn't do anything
+@export var speed_limit = true
 
-var _groundCast: RayCast2D
-var _topCast: RayCast2D
-var _leftCast: RayCast2D
-var _rightCast: RayCast2D
-var _topRightCast: RayCast2D
-var _bottomRightCast: RayCast2D
-var _bottomLeftCast: RayCast2D
-var _topLeftCast: RayCast2D
-var _audioPlayer: AudioStreamPlayer2D
+var bounce_factor: float = 1.0
 
-func _ready():
-	_groundCast = $GroundCast
-	_topCast = $TopCast
-	_leftCast = $LeftCast
-	_rightCast = $RightCast
-	_bottomLeftCast = $BottomLeftCast
-	_topLeftCast = $TopLeftCast
-	_topRightCast = $TopRightCast
-	_bottomRightCast = $BottomRightCast
-	_audioPlayer = $AD
+func _ready() -> void:
+	# Create a new PhysicsMaterial
+	var bounce_material = PhysicsMaterial.new()
+	# Set the bounce property
+	bounce_material.bounce = bounce_factor
+	# Disable friction
+	bounce_material.friction = 0.0
 
-	MaxSpeed *= 1000
-	BounceForcePerPixel *= 1000
+	# Assign the material to the physics_material_override property
+	self.physics_material_override = bounce_material
 
-func _physics_process(_delta: float):
-	var currentRotation = rotation_degrees
-	_groundCast.rotation_degrees = fmod((0 - currentRotation), 360)
-	_topCast.rotation_degrees = fmod((180 - currentRotation), 360)
-	_rightCast.rotation_degrees = fmod((270 - currentRotation), 360)
-	_leftCast.rotation_degrees = fmod((90 - currentRotation), 360)
-	_bottomLeftCast.rotation_degrees = fmod((45 - currentRotation), 360)
-	_bottomRightCast.rotation_degrees = fmod((315 - currentRotation), 360)
-	_topRightCast.rotation_degrees = fmod((225 - currentRotation), 360)
-	_topLeftCast.rotation_degrees = fmod((135 - currentRotation), 360)
-
-	if _groundCast.is_colliding():
-		var force = Vector2(0, -BounceForcePerPixel)
-		custom_force(force)
-	elif _topCast.is_colliding():
-		var force = Vector2(0, BounceForcePerPixel)
-		custom_force(force)
-	elif _leftCast.is_colliding():
-		var force = Vector2(BounceForcePerPixel, 0)
-		custom_force(force)
-	elif _rightCast.is_colliding():
-		var force = Vector2( - BounceForcePerPixel, 0)
-		custom_force(force)
-	elif _bottomLeftCast.is_colliding():
-		var force = Vector2(BounceForcePerPixel, -BounceForcePerPixel)
-		custom_force(force)
-	elif _topLeftCast.is_colliding():
-		var force = Vector2(BounceForcePerPixel, BounceForcePerPixel)
-		custom_force(force)
-	elif _topRightCast.is_colliding():
-		var force = Vector2( - BounceForcePerPixel, BounceForcePerPixel)
-		custom_force(force)
-	elif _bottomRightCast.is_colliding():
-		var force = Vector2( - BounceForcePerPixel, -BounceForcePerPixel)
-		custom_force(force)
-
-	limit_speed()
-
-func custom_force(force: Vector2):
-	# Apply the force to the ball
-	_audioPlayer.play()
-	apply_central_force(force)
-
-func limit_speed():
-	var velocity = linear_velocity
-	var speed = velocity.length()
-
-	if speed > MaxSpeed:
-		velocity = velocity.normalized() * MaxSpeed
-		linear_velocity = velocity
+func _physics_process(_delta: float) -> void:
+	if speed_limit:
+		# Limit the speed of the ball
+		var speed_in_thousand_pixels_a_second = max_speed * 1000
+		var velocity = linear_velocity
+		var speed = velocity.length()
+		# Apply the speed is the speed 
+		if speed > speed_in_thousand_pixels_a_second:
+			velocity = velocity.normalized() * speed_in_thousand_pixels_a_second
+			linear_velocity = velocity

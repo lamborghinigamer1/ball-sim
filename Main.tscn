@@ -8,16 +8,12 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h3xix")
-Balls = 10
-BallScene = ExtResource("1_rtuq4")
+balls = 20
+ball_scene = ExtResource("1_rtuq4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 script = ExtResource("3_x8vri")
-
-[node name="Ball" parent="." instance=ExtResource("1_rtuq4")]
-position = Vector2(-77, -13)
-BounceForcePerPixel = 5.0
 
 [node name="Wall" parent="." instance=ExtResource("2_umwga")]
 modulate = Color(0.490196, 0.490196, 0.490196, 1)

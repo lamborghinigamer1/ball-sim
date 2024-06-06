@@ -6,8 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7w41p"]
 
 [node name="Ball" type="RigidBody2D"]
+linear_damp_mode = 1
 script = ExtResource("1_v456h")
-BounceForcePerPixel = 10.0
 
 [node name="BallSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -16,44 +16,5 @@ texture = ExtResource("1_sycrf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7w41p")
-
-[node name="GroundCast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="LeftCast" type="RayCast2D" parent="."]
-rotation = 1.5708
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="TopCast" type="RayCast2D" parent="."]
-rotation = 3.14159
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="RightCast" type="RayCast2D" parent="."]
-rotation = 4.71239
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="TopRightCast" type="RayCast2D" parent="."]
-rotation = 3.92699
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="BottomRightCast" type="RayCast2D" parent="."]
-rotation = -0.785398
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="BottomLeftCast" type="RayCast2D" parent="."]
-rotation = 0.785398
-target_position = Vector2(0, 11)
-collide_with_areas = true
-
-[node name="TopLeftCast" type="RayCast2D" parent="."]
-rotation = -3.92699
-target_position = Vector2(0, 11)
-collide_with_areas = true
 
 [node name="AD" type="AudioStreamPlayer2D" parent="."]

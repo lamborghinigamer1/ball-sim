@@ -1,15 +1,13 @@
 extends Node2D
 
-@export var Balls: int = 1
-@export var BallScene: PackedScene
+@export var balls: int = 1
+@export var ball_scene: PackedScene
 
 func _ready():
 	Spawn()
 
 func Spawn():
-	for i in range(Balls):
+	for i in range(0, balls):
 		print("Spawned ball")
-		var ball = BallScene.instantiate()
-		ball.MaxSpeed = 10
-		ball.BounceForcePerPixel = 5
+		var ball = ball_scene.instantiate()
 		add_child(ball)
